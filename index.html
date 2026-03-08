@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navjot Singh — Business Analyst & AI Automation</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: rgba(255,255,255,0.06);
+    --accent: #6ee7b7;
+    --accent2: #818cf8;
+    --accent3: #f472b6;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --glow: rgba(110, 231, 183, 0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(110,231,183,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+  }
+  body:hover .cursor { transform: scale(1); }
+  a:hover ~ .cursor, button:hover ~ .cursor { transform: scale(2); }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,15,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo span {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* Hero */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(110,231,183,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(110,231,183,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+  @keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(110,231,183,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 28px;
+    padding: 8px 16px;
+    border: 1px solid rgba(110,231,183,0.2);
+    border-radius: 100px;
+    background: rgba(110,231,183,0.05);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  .hero-name .line-2 {
+    display: block;
+    -webkit-text-stroke: 1px rgba(232,232,240,0.3);
+    color: transparent;
+  }
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+  .hero-desc strong { color: var(--text); font-weight: 500; }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #0a0a0f;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(110,231,183,0.3); }
+  .btn-ghost {
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+    display: flex;
+    gap: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Sections */
+  section {
+    padding: 120px 60px;
+    position: relative;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 64px;
+  }
+
+  /* About */
+  #about { background: var(--surface); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .detail-item {
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.3s;
+  }
+  .detail-item:hover { border-color: rgba(110,231,183,0.3); }
+  .detail-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .detail-value {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .about-skills-wrap { }
+  .skills-category {
+    margin-bottom: 40px;
+  }
+  .skills-cat-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .skill-tag {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-tag::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .skill-tag:hover::before { opacity: 0.1; }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+  .skill-tag span { position: relative; }
+  .skill-tag.highlight {
+    border-color: rgba(110,231,183,0.4);
+    color: var(--accent);
+    background: rgba(110,231,183,0.05);
+  }
+
+  /* Experience */
+  #experience { }
+  .exp-container {
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .exp-item {
+    background: var(--card);
+    padding: 44px 48px;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.4s ease;
+    transform-origin: bottom;
+  }
+  .exp-item:hover { background: var(--surface); }
+  .exp-item:hover::before { transform: scaleY(1); }
+  .exp-meta { }
+  .exp-period {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .exp-company {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .exp-type {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+  }
+  .exp-content { }
+  .exp-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .exp-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .exp-points li {
+    display: flex;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .exp-points li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    margin-top: 1px;
+  }
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .exp-tag {
+    padding: 4px 12px;
+    background: rgba(129,140,248,0.08);
+    border: 1px solid rgba(129,140,248,0.2);
+    border-radius: 100px;
+    font-size: 0.72rem;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+  }
+
+  /* Projects / Skills Grid */
+  #skills-section { background: var(--surface); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(110,231,183,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .skill-card:hover { border-color: rgba(110,231,183,0.2); transform: translateY(-4px); }
+  .skill-card:hover::after { opacity: 1; }
+  .skill-icon {
+    width: 44px; height: 44px;
+    background: rgba(110,231,183,0.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
+  .skill-card-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .skill-card-cat {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .skill-bar {
+    margin-top: 16px;
+    height: 2px;
+    background: var(--border);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 100px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .skill-card.visible .skill-bar-fill { transform: scaleX(1); }
+
+  /* Education */
+  #education { }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+  }
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .edu-card:hover { transform: translateY(-6px); border-color: rgba(110,231,183,0.2); }
+  .edu-year {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 20px;
+    letter-spacing: -0.04em;
+  }
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .edu-institution {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .edu-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(110,231,183,0.08);
+    border: 1px solid rgba(110,231,183,0.2);
+    border-radius: 100px;
+    font-size: 0.82rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Achievements */
+  #achievements { background: var(--surface); }
+  .achieve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .achieve-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: all 0.3s;
+  }
+  .achieve-card:hover {
+    border-color: rgba(244,114,182,0.3);
+    transform: translateY(-4px);
+  }
+  .achieve-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 52px; height: 52px;
+    background: rgba(244,114,182,0.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .achieve-content {}
+  .achieve-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .achieve-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Contact */
+  #contact { }
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-text {}
+  .contact-intro {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+  }
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateX(8px);
+  }
+  .contact-link-icon {
+    font-size: 1.2rem;
+    width: 40px; height: 40px;
+    background: rgba(110,231,183,0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-link-info {}
+  .contact-link-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .contact-link-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .contact-highlight {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-highlight::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(110,231,183,0.08) 0%, transparent 70%);
+  }
+  .contact-highlight-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .contact-highlight-text .accent { color: var(--accent); }
+  .contact-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .location-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(110,231,183,0.05);
+    border: 1px solid rgba(110,231,183,0.15);
+    border-radius: 100px;
+    font-size: 0.82rem;
+    color: var(--accent);
+  }
+
+  /* Footer */
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+  }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-links a {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Marquee */
+  .marquee-section {
+    padding: 32px 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    padding: 0 40px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    white-space: nowrap;
+  }
+  .marquee-item span.dot {
+    width: 4px; height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section, #hero { padding: 80px 24px; }
+    .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    .hero-stats { display: none; }
+    .exp-item { grid-template-columns: 1fr; gap: 20px; }
+    footer { flex-direction: column; gap: 16px; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-logo" href="#hero"><span></span>Navjot Singh</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills-section">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for Opportunities</div>
+    <h1 class="hero-name">
+      Navjot
+      <span class="line-2">Singh</span>
+    </h1>
+    <p class="hero-desc">
+      <strong>Business Analyst · AI Automation · Data Analytics</strong><br>
+      Results-driven analyst with 3+ years bridging business strategy and intelligent automation — turning complex data into decisions that matter.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#contact">Get in Touch</a>
+      <a class="btn-ghost" href="#experience">View Work</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years Exp</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">40%</div>
+      <div class="stat-label">Efficiency Gain</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">20%</div>
+      <div class="stat-label">Ops Improvement</div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-item">Business Analysis<span class="dot"></span></div>
+    <div class="marquee-item">AI Automation<span class="dot"></span></div>
+    <div class="marquee-item">Power BI<span class="dot"></span></div>
+    <div class="marquee-item">Python<span class="dot"></span></div>
+    <div class="marquee-item">SQL<span class="dot"></span></div>
+    <div class="marquee-item">GoHighLevel<span class="dot"></span></div>
+    <div class="marquee-item">n8n Workflows<span class="dot"></span></div>
+    <div class="marquee-item">Tableau<span class="dot"></span></div>
+    <div class="marquee-item">Predictive Modelling<span class="dot"></span></div>
+    <div class="marquee-item">Data Visualization<span class="dot"></span></div>
+    <div class="marquee-item">CRM Platforms<span class="dot"></span></div>
+    <div class="marquee-item">Stakeholder Mgmt<span class="dot"></span></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-item">Business Analysis<span class="dot"></span></div>
+    <div class="marquee-item">AI Automation<span class="dot"></span></div>
+    <div class="marquee-item">Power BI<span class="dot"></span></div>
+    <div class="marquee-item">Python<span class="dot"></span></div>
+    <div class="marquee-item">SQL<span class="dot"></span></div>
+    <div class="marquee-item">GoHighLevel<span class="dot"></span></div>
+    <div class="marquee-item">n8n Workflows<span class="dot"></span></div>
+    <div class="marquee-item">Tableau<span class="dot"></span></div>
+    <div class="marquee-item">Predictive Modelling<span class="dot"></span></div>
+    <div class="marquee-item">Data Visualization<span class="dot"></span></div>
+    <div class="marquee-item">CRM Platforms<span class="dot"></span></div>
+    <div class="marquee-item">Stakeholder Mgmt<span class="dot"></span></div>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title reveal">Where Data Meets<br>Business Strategy</h2>
+  <div class="about-grid">
+    <div class="about-text reveal reveal-delay-1">
+      <p>Results-driven Business Analyst with <strong>3+ years of experience</strong> spanning AI automation, data analytics, client engagement, and business development across technology environments.</p>
+      <p>Currently working in an AI Automation team at <strong>Exotica IT Solutions</strong> — managing end-to-end client lifecycle from requirements gathering, HLR/SOW preparation, project scoping to delivery, upselling, and cross-selling.</p>
+      <p>Skilled bridge between clients, sales teams, project managers, and technical teams — ensuring clarity, alignment, and successful project execution.</p>
+      <div class="about-details">
+        <div class="detail-item">
+          <div class="detail-label">Location</div>
+          <div class="detail-value">Gurugram, HR</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Preference</div>
+          <div class="detail-value">Gurugram · Mohali</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Education</div>
+          <div class="detail-value">MBA — Business Analytics</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Languages</div>
+          <div class="detail-value">English · Punjabi · Hindi</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-skills-wrap reveal reveal-delay-2">
+      <div class="skills-category">
+        <div class="skills-cat-title">Knowledge Areas</div>
+        <div class="skill-tags">
+          <div class="skill-tag highlight"><span>Business Analysis</span></div>
+          <div class="skill-tag highlight"><span>AI Automation</span></div>
+          <div class="skill-tag"><span>Requirement Gathering</span></div>
+          <div class="skill-tag"><span>Predictive Modelling</span></div>
+          <div class="skill-tag"><span>Machine Learning</span></div>
+          <div class="skill-tag"><span>Data Visualization</span></div>
+          <div class="skill-tag"><span>Dashboard Development</span></div>
+          <div class="skill-tag"><span>Reporting</span></div>
+        </div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-cat-title">Soft Skills</div>
+        <div class="skill-tags">
+          <div class="skill-tag"><span>Analytical Thinking</span></div>
+          <div class="skill-tag"><span>Communication</span></div>
+          <div class="skill-tag"><span>Client Management</span></div>
+          <div class="skill-tag"><span>Team Player</span></div>
+          <div class="skill-tag"><span>Problem-Solving</span></div>
+          <div class="skill-tag"><span>Stakeholder Mgmt</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="section-label">Work History</div>
+  <h2 class="section-title reveal">Professional Experience</h2>
+  <div class="exp-container">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">2022 – Present</div>
+        <div class="exp-company">Exotica IT Solutions</div>
+        <div class="exp-type">Full-time</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-title">Business Analyst — AI Automation Team</div>
+        <ul class="exp-points">
+          <li>Prepared High-Level Requirements (HLRs) and Statements of Work (SOWs) for AI automation projects, ensuring precise scope definition and client alignment.</li>
+          <li>Served as primary liaison between clients, sales teams, project managers, and technical teams — translating business needs into actionable technical deliverables.</li>
+          <li>Conducted client discovery calls and requirement-gathering sessions to understand project needs and define success criteria.</li>
+          <li>Supported upselling and cross-selling opportunities by identifying unmet client needs and proposing tailored solutions.</li>
+          <li>Leveraged GoHighLevel (GHL), n8n, and various CRMs to streamline business workflows and automate processes.</li>
+          <li>Developed and maintained interactive dashboards using Power BI and Tableau, improving decision-making efficiency by <strong style="color:var(--accent)">40%</strong>.</li>
+          <li>Trained and mentored junior data interns on Power BI and Tableau — covering data modelling and visualization best practices.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Power BI</span>
+          <span class="exp-tag">Tableau</span>
+          <span class="exp-tag">GHL</span>
+          <span class="exp-tag">n8n</span>
+          <span class="exp-tag">Python</span>
+          <span class="exp-tag">SQL</span>
+          <span class="exp-tag">CRM</span>
+          <span class="exp-tag">Web Scraping</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-1">
+      <div class="exp-meta">
+        <div class="exp-period">Training</div>
+        <div class="exp-company">Business Dev Training</div>
+        <div class="exp-type">Trainer Role</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-title">Business Development Trainer</div>
+        <ul class="exp-points">
+          <li>Conducted in-depth market research and business analysis to design practical training modules for aspiring business development professionals.</li>
+          <li>Delivered engaging sessions on client acquisition strategies, leveraging real-world case studies to enhance learner outcomes.</li>
+          <li>Monitored business performance, identified gaps, and prepared analytical reports with strategic recommendations for leadership.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Market Research</span>
+          <span class="exp-tag">Training</span>
+          <span class="exp-tag">Analytics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-2">
+      <div class="exp-meta">
+        <div class="exp-period">Internship</div>
+        <div class="exp-company">Performance Portal Project</div>
+        <div class="exp-type">Internship</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-title">Data Analyst Intern — Data Optimization</div>
+        <ul class="exp-points">
+          <li>Employed Power BI to analyze performance portal data, yielding a <strong style="color:var(--accent)">20% improvement</strong> in operational efficiency.</li>
+          <li>Conducted in-depth analysis of machinery operations and refined data output for seamless dashboard integration.</li>
+          <li>Contributed to market research and competitive analysis to identify growth avenues.</li>
+          <li>Collaborated with cross-functional teams to generate actionable insights and strategic recommendations.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Power BI</span>
+          <span class="exp-tag">Data Analysis</span>
+          <span class="exp-tag">Dashboards</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Technical Skills -->
+<section id="skills-section">
+  <div class="section-label">Technical Toolkit</div>
+  <h2 class="section-title reveal">Tools & Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal"><div class="skill-icon">📊</div><div class="skill-card-name">Power BI</div><div class="skill-card-cat">Visualization</div><div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-1"><div class="skill-icon">📈</div><div class="skill-card-name">Tableau</div><div class="skill-card-cat">Visualization</div><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-2"><div class="skill-icon">🗄️</div><div class="skill-card-name">SQL</div><div class="skill-card-cat">Database</div><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-3"><div class="skill-icon">🐍</div><div class="skill-card-name">Python</div><div class="skill-card-cat">Programming</div><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">⚡</div><div class="skill-card-name">GoHighLevel</div><div class="skill-card-cat">CRM / Automation</div><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-1"><div class="skill-icon">🔄</div><div class="skill-card-name">n8n</div><div class="skill-card-cat">Workflow Automation</div><div class="skill-bar"><div class="skill-bar-fill" style="width:87%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-2"><div class="skill-icon">🌐</div><div class="skill-card-name">Web Scraping</div><div class="skill-card-cat">Data Collection</div><div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-3"><div class="skill-icon">💻</div><div class="skill-card-name">HTML / CSS</div><div class="skill-card-cat">Web</div><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🔬</div><div class="skill-card-name">SPSS / MODELER</div><div class="skill-card-cat">Statistical Analysis</div><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-1"><div class="skill-icon">🐘</div><div class="skill-card-name">Hadoop</div><div class="skill-card-cat">Big Data</div><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-2"><div class="skill-icon">📋</div><div class="skill-card-name">COGNOS</div><div class="skill-card-cat">Business Intelligence</div><div class="skill-bar"><div class="skill-bar-fill" style="width:72%"></div></div></div>
+    <div class="skill-card reveal reveal-delay-3"><div class="skill-icon">📑</div><div class="skill-card-name">Microsoft Excel</div><div class="skill-card-cat">Spreadsheets</div><div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div></div>
+  </div>
+</section>
+
+<!-- Education -->
+<section id="education">
+  <div class="section-label">Academic Background</div>
+  <h2 class="section-title reveal">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">2024</div>
+      <div class="edu-degree">MBA — Business Analytics</div>
+      <div class="edu-institution">Chandigarh University</div>
+      <div class="edu-score">🎓 CGPA: 7.89</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-year">2020</div>
+      <div class="edu-degree">Bachelor of Commerce (B.Com.)</div>
+      <div class="edu-institution">Panjab University, Chandigarh</div>
+      <div class="edu-score">📘 Score: 60.4%</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-year">🔬</div>
+      <div class="edu-degree">Research Project — Digitization in HRM</div>
+      <div class="edu-institution">Academic Research</div>
+      <div class="edu-score">📈 +20% HR Efficiency</div>
+    </div>
+  </div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements">
+  <div class="section-label">Highlights</div>
+  <h2 class="section-title reveal">Achievements & Activities</h2>
+  <div class="achieve-grid">
+    <div class="achieve-card reveal">
+      <div class="achieve-icon">🏆</div>
+      <div class="achieve-content">
+        <div class="achieve-title">Debate Competition Winner</div>
+        <div class="achieve-desc">Won the debate competition held at AIT, Chandigarh University — demonstrating strong analytical communication skills.</div>
+      </div>
+    </div>
+    <div class="achieve-card reveal reveal-delay-1">
+      <div class="achieve-icon">🌱</div>
+      <div class="achieve-content">
+        <div class="achieve-title">4,000+ Trees Planted</div>
+        <div class="achieve-desc">Volunteered at a village-level NGO and contributed to a large-scale tree plantation drive, making a lasting environmental impact.</div>
+      </div>
+    </div>
+    <div class="achieve-card reveal reveal-delay-2">
+      <div class="achieve-icon">🤝</div>
+      <div class="achieve-content">
+        <div class="achieve-title">NGO Internship — NAYEPANKH</div>
+        <div class="achieve-desc">Completed impactful internship project with NAYEPANKH NGO, U.P. (2023), contributing to community development initiatives.</div>
+      </div>
+    </div>
+    <div class="achieve-card reveal reveal-delay-3">
+      <div class="achieve-icon">📊</div>
+      <div class="achieve-content">
+        <div class="achieve-title">40% Decision Efficiency Gain</div>
+        <div class="achieve-desc">Built and deployed interactive dashboards in Power BI and Tableau that measurably improved business decision-making speed and quality.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2 class="section-title reveal">Let's Work Together</h2>
+  <div class="contact-wrapper">
+    <div class="contact-text reveal">
+      <p class="contact-intro">Open to new opportunities in Business Analysis, AI Automation, and Data Analytics roles. Prefer positions in Gurugram or Mohali, but always happy to discuss.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="tel:+919988610566">
+          <div class="contact-link-icon">📞</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-value">+91-9988610566</div>
+          </div>
+        </a>
+        <a class="contact-link" href="mailto:navjots2661@gmail.com">
+          <div class="contact-link-icon">✉️</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">navjots2661@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/navjot-singh" target="_blank">
+          <div class="contact-link-icon">💼</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/navjot-singh</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-highlight reveal reveal-delay-1">
+      <div class="contact-highlight-text">Ready to drive <span class="accent">intelligent growth</span> for your business.</div>
+      <p class="contact-sub">Whether it's streamlining workflows with AI automation, building dashboards that reveal real insights, or bridging the gap between your tech and business teams — let's make it happen.</p>
+      <div class="location-badge">📍 Gurugram, HR · Open to Opportunities</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-copy">© 2025 Navjot Singh. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="mailto:navjots2661@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/navjot-singh" target="_blank">LinkedIn</a>
+    <a href="tel:+919988610566">Phone</a>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX - 6 + 'px';
+    cursor.style.top = mouseY - 6 + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX - 18) * 0.12;
+    ringY += (mouseY - ringY - 18) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2.5)';
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Trigger skill bar animations
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.transform = `scaleX(${parseFloat(bar.parentElement.previousElementSibling ? 1 : bar.style.width) / 100})`;
+        });
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // Skill cards observer for bar animation
+  const skillCards = document.querySelectorAll('.skill-card');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  skillCards.forEach(c => skillObserver.observe(c));
+
+  // Nav active state on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    });
+  });
+
+  // Counter animation for stats
+  function animateCounter(el, target, suffix='') {
+    let start = 0;
+    const duration = 2000;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { start = target; clearInterval(timer); }
+      el.textContent = Math.floor(start) + suffix;
+    }, 16);
+  }
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) {
+    const nums = heroStats.querySelectorAll('.stat-num');
+    animateCounter(nums[0], 3, '+');
+    animateCounter(nums[1], 40, '%');
+    animateCounter(nums[2], 20, '%');
+  }
+</script>
+</body>
+</html>
