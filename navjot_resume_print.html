@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navjot Singh — Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== PRINT SETUP ===== */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 9pt;
+    line-height: 1.4;
+    color: #1a1a2e;
+    background: #fff;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+  }
+
+  /* ===== LAYOUT ===== */
+  .page {
+    display: grid;
+    grid-template-columns: 62mm 1fr;
+    min-height: 297mm;
+  }
+
+  /* ===== LEFT SIDEBAR ===== */
+  .sidebar {
+    background: #1a2744;
+    color: #e8eaf6;
+    padding: 28px 18px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .name-block {
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 18px;
+  }
+
+  .name-block h1 {
+    font-size: 18pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .name-block .title {
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6ee7b7;
+    line-height: 1.5;
+  }
+
+  /* Sidebar sections */
+  .sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sidebar-heading {
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6ee7b7;
+    border-bottom: 1px solid rgba(110,231,183,0.25);
+    padding-bottom: 5px;
+    margin-bottom: 2px;
+  }
+
+  /* Contact */
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 7.5pt;
+    color: #c5cae9;
+    word-break: break-all;
+    line-height: 1.3;
+  }
+
+  .contact-item .icon {
+    font-size: 8pt;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Skills lists */
+  .skill-group-label {
+    font-size: 7pt;
+    font-weight: 600;
+    color: #90caf9;
+    margin-top: 6px;
+    margin-bottom: 3px;
+  }
+
+  .skill-list {
+    font-size: 7.5pt;
+    color: #c5cae9;
+    line-height: 1.6;
+  }
+
+  /* Core skills tags */
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tag {
+    background: rgba(110,231,183,0.12);
+    border: 1px solid rgba(110,231,183,0.25);
+    color: #6ee7b7;
+    font-size: 6.5pt;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 3px;
+    line-height: 1.4;
+  }
+
+  /* Soft skills */
+  .soft-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .soft-list li {
+    font-size: 7.5pt;
+    color: #c5cae9;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .soft-list li::before {
+    content: '▸';
+    color: #6ee7b7;
+    font-size: 6pt;
+    flex-shrink: 0;
+  }
+
+  /* Languages */
+  .lang-list {
+    font-size: 7.5pt;
+    color: #c5cae9;
+    line-height: 1.7;
+  }
+
+  /* Activities sidebar */
+  .activities-text {
+    font-size: 7.5pt;
+    color: #c5cae9;
+    line-height: 1.6;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main {
+    padding: 28px 24px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* Section heading */
+  .section-head {
+    font-size: 8.5pt;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1a2744;
+    border-bottom: 2px solid #6ee7b7;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+  }
+
+  /* Profile */
+  .profile-text {
+    font-size: 8pt;
+    color: #3a3a5c;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* Experience */
+  .exp-block {
+    margin-bottom: 12px;
+  }
+
+  .exp-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1px;
+  }
+
+  .exp-company {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1a2744;
+  }
+
+  .exp-period {
+    font-size: 7pt;
+    font-weight: 600;
+    color: #6ee7b7;
+    background: #1a2744;
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .exp-role {
+    font-size: 8pt;
+    font-weight: 500;
+    color: #3a5a8a;
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+
+  .exp-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-left: 0;
+  }
+
+  .exp-points li {
+    font-size: 7.5pt;
+    color: #444466;
+    line-height: 1.5;
+    display: flex;
+    gap: 6px;
+  }
+
+  .exp-points li::before {
+    content: '→';
+    color: #1a2744;
+    font-size: 7pt;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .exp-points li strong {
+    color: #1a7a4a;
+    font-weight: 700;
+  }
+
+  /* Education */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .edu-item {
+    background: #f4f6fb;
+    border-left: 3px solid #1a2744;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 10px;
+  }
+
+  .edu-degree {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #1a2744;
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+
+  .edu-inst {
+    font-size: 7pt;
+    color: #666688;
+    margin-bottom: 3px;
+  }
+
+  .edu-score {
+    font-size: 7pt;
+    font-weight: 600;
+    color: #1a7a4a;
+  }
+
+  .edu-year {
+    font-size: 7pt;
+    color: #999;
+    margin-bottom: 2px;
+  }
+
+  /* Projects */
+  .project-block {
+    background: #f4f6fb;
+    border-left: 3px solid #6ee7b7;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 10px;
+  }
+
+  .project-name {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #1a2744;
+    margin-bottom: 2px;
+  }
+
+  .project-desc {
+    font-size: 7.5pt;
+    color: #444466;
+    line-height: 1.5;
+  }
+
+  /* Achievements inline */
+  .achieve-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .achieve-item {
+    flex: 1;
+    min-width: 120px;
+    background: #f4f6fb;
+    border-radius: 4px;
+    padding: 8px 10px;
+    border-top: 2px solid #1a2744;
+  }
+
+  .achieve-icon {
+    font-size: 10pt;
+    margin-bottom: 3px;
+  }
+
+  .achieve-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #1a2744;
+    margin-bottom: 2px;
+  }
+
+  .achieve-desc {
+    font-size: 6.8pt;
+    color: #666688;
+    line-height: 1.4;
+  }
+
+  /* Divider between exp items */
+  .exp-divider {
+    border: none;
+    border-top: 1px dashed #e0e0f0;
+    margin: 10px 0;
+  }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    body {
+      width: 210mm;
+      margin: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      color-adjust: exact;
+    }
+
+    .page {
+      min-height: 297mm;
+      page-break-inside: avoid;
+    }
+
+    .sidebar {
+      background: #1a2744 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .exp-block {
+      page-break-inside: avoid;
+    }
+  }
+
+  /* Print button - hidden on print */
+  .print-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    padding: 10px 22px;
+    background: #1a2744;
+    color: #6ee7b7;
+    font-family: inherit;
+    font-size: 9pt;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    letter-spacing: 0.05em;
+    z-index: 999;
+    transition: background 0.2s;
+  }
+
+  .print-btn:hover {
+    background: #243562;
+  }
+
+  @media print {
+    .print-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Save as PDF</button>
+
+<div class="page">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+
+    <div class="name-block">
+      <h1>NAVJOT<br>SINGH</h1>
+      <div class="title">Business Analyst<br>AI Automation · Data Analytics<br>Client Solutions</div>
+    </div>
+
+    <!-- Contact -->
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Contact</div>
+      <div class="contact-item"><span class="icon">📞</span><span>+91-9988610566</span></div>
+      <div class="contact-item"><span class="icon">✉️</span><span>navjots2661@gmail.com</span></div>
+      <div class="contact-item"><span class="icon">📍</span><span>Mohali, Punjab</span></div>
+      <div class="contact-item"><span class="icon">🌐</span><span>Portfolio</span></div>
+      <div class="contact-item"><span class="icon">💼</span><span>linkedin.com/in/navjot-singh</span></div>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Technical Skills</div>
+
+      <div class="skill-group-label">Data &amp; Analytics</div>
+      <div class="skill-list">Power BI · Tableau · SQL · Python<br>Hadoop · COGNOS · SPSS / MODELER</div>
+
+      <div class="skill-group-label">Automation &amp; Platforms</div>
+      <div class="skill-list">GoHighLevel (GHL) · n8n · CRM Platforms<br>Web Scraping · HTML</div>
+
+      <div class="skill-group-label">Tools</div>
+      <div class="skill-list">Microsoft Excel</div>
+    </div>
+
+    <!-- Core Skills -->
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Core Skills</div>
+      <div class="tag-list">
+        <span class="tag">Business Analysis</span>
+        <span class="tag">AI Automation</span>
+        <span class="tag">Requirement Gathering</span>
+        <span class="tag">Predictive Modelling</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Data Visualization</span>
+        <span class="tag">Dashboard Dev</span>
+        <span class="tag">Reporting &amp; Docs</span>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Soft Skills</div>
+      <ul class="soft-list">
+        <li>Analytical Thinking</li>
+        <li>Communication</li>
+        <li>Client Management</li>
+        <li>Team Player</li>
+        <li>Problem-Solving</li>
+        <li>Stakeholder Management</li>
+      </ul>
+    </div>
+
+    <!-- Languages -->
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Languages</div>
+      <div class="lang-list">English · Punjabi · Hindi</div>
+    </div>
+
+    <!-- Activities -->
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Activities</div>
+      <div class="activities-text">🏆 Won Debate Competition at AIT, Chandigarh University<br><br>🌱 Volunteered with a village-level NGO — planted 4,000+ trees<br><br>🤝 Internship with NAYEPANKH NGO, U.P. (2023)</div>
+    </div>
+
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main">
+
+    <!-- Profile -->
+    <section>
+      <div class="section-head">Profile</div>
+      <p class="profile-text">Results-driven Business Analyst with <strong>3+ years of experience</strong> in data analytics, AI automation, and client management. Skilled in requirement gathering, business analysis, and translating business needs into technical solutions. Experienced in tools like Power BI, Tableau, SQL, Python, GoHighLevel (GHL), n8n, and CRM platforms to build dashboards, automate workflows, and generate actionable insights. Strong ability to manage client relationships, coordinate with cross-functional teams, and deliver data-driven solutions that improve business performance. Holds an MBA in Business Analytics with knowledge of predictive modelling, machine learning.</p>
+    </section>
+
+    <!-- Work Experience -->
+    <section>
+      <div class="section-head">Work Experience</div>
+
+      <!-- Job 1 -->
+      <div class="exp-block">
+        <div class="exp-header">
+          <div class="exp-company">Exotica IT Solutions, Mohali</div>
+          <div class="exp-period">Nov 2025 – Present</div>
+        </div>
+        <div class="exp-role">Business Analyst</div>
+        <ul class="exp-points">
+          <li>Prepared High-Level Requirements (HLRs) and Statements of Work (SOWs) for AI automation projects, ensuring precise scope definition and client alignment.</li>
+          <li>Served as primary liaison between clients, sales teams, project managers, and technical teams — translating business needs into actionable technical deliverables.</li>
+          <li>Conducted client discovery calls and requirement-gathering sessions to understand project needs, clarify scope, and define success criteria.</li>
+          <li>Supported upselling and cross-selling opportunities by identifying unmet client needs and proposing tailored solutions.</li>
+          <li>Leveraged GoHighLevel (GHL), n8n, and various CRMs to streamline business workflows and automate processes.</li>
+          <li>Used Python-based web scraping to gather market intelligence and competitive data.</li>
+          <li>Monitored business performance, identified gaps, and prepared analytical reports with strategic recommendations for leadership.</li>
+        </ul>
+      </div>
+
+      <hr class="exp-divider">
+
+      <!-- Job 2 -->
+      <div class="exp-block">
+        <div class="exp-header">
+          <div class="exp-company">Ekrocx Technologies, Mohali</div>
+          <div class="exp-period">Jun 2024 – Oct 2025</div>
+        </div>
+        <div class="exp-role">Data Analyst</div>
+        <ul class="exp-points">
+          <li>Developed interactive dashboards using Power BI and Tableau — tracked key business metrics and improved decision-making efficiency by <strong>40%</strong>.</li>
+          <li>Trained junior data interns on Power BI, Tableau, data modelling, and visualization best practices.</li>
+        </ul>
+      </div>
+
+      <hr class="exp-divider">
+
+      <!-- Job 3 -->
+      <div class="exp-block">
+        <div class="exp-header">
+          <div class="exp-company">Careers360, Gurugram</div>
+          <div class="exp-period">Mar 2024 – May 2024</div>
+        </div>
+        <div class="exp-role">Business Development Trainer</div>
+        <ul class="exp-points">
+          <li>Conducted market research and business analysis to design practical training modules for aspiring business development professionals.</li>
+          <li>Delivered sessions on client acquisition strategies using real-world case studies to enhance learning outcomes.</li>
+        </ul>
+      </div>
+
+      <hr class="exp-divider">
+
+      <!-- Job 4 -->
+      <div class="exp-block">
+        <div class="exp-header">
+          <div class="exp-company">AkzoNobel Pvt. Ltd., Mohali</div>
+          <div class="exp-period">2023</div>
+        </div>
+        <div class="exp-role">Data Analyst Intern</div>
+        <ul class="exp-points">
+          <li>Used Power BI to analyze performance portal data — achieved <strong>20% improvement</strong> in operational efficiency.</li>
+          <li>Analyzed machinery operations data and refined data outputs for seamless dashboard integration.</li>
+          <li>Conducted market research and competitive analysis; collaborated with cross-functional teams to generate strategic insights.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <div class="section-head">Education</div>
+      <div class="edu-grid">
+        <div class="edu-item">
+          <div class="edu-year">2024</div>
+          <div class="edu-degree">MBA — Business Analytics</div>
+          <div class="edu-inst">Chandigarh University</div>
+          <div class="edu-score">CGPA: 7.89</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2020</div>
+          <div class="edu-degree">Bachelor of Commerce (B.Com.)</div>
+          <div class="edu-inst">Panjab University, Chandigarh</div>
+          <div class="edu-score">Percentage: 60.4%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section>
+      <div class="section-head">Trainings &amp; Projects</div>
+      <div class="project-block">
+        <div class="project-name">Research Project — Digitization in HRM</div>
+        <div class="project-desc">Improved HR efficiency and employee engagement by <strong>20%</strong> through digital transformation strategies in Human Resource Management. Focused on workflow automation, digital onboarding, and performance tracking systems.</div>
+      </div>
+    </section>
+
+    <!-- Key Achievements -->
+    <section>
+      <div class="section-head">Key Achievements</div>
+      <div class="achieve-row">
+        <div class="achieve-item">
+          <div class="achieve-icon">📊</div>
+          <div class="achieve-title">40% Efficiency Gain</div>
+          <div class="achieve-desc">Built Power BI & Tableau dashboards that measurably improved business decision-making speed.</div>
+        </div>
+        <div class="achieve-item">
+          <div class="achieve-icon">⚙️</div>
+          <div class="achieve-title">20% Ops Improvement</div>
+          <div class="achieve-desc">Optimised performance portal at AkzoNobel using Power BI analytics.</div>
+        </div>
+        <div class="achieve-item">
+          <div class="achieve-icon">🏆</div>
+          <div class="achieve-title">Debate Winner</div>
+          <div class="achieve-desc">Won debate competition at AIT, Chandigarh University.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
